@@ -1,0 +1,23 @@
+html
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Поиск заметок</title>
+</head>
+<body>
+ <h1>Поиск заметок</h1>
+ <form method="get" action="/search">
+  <label for="query">Поиск:</label><br>
+  <input type="text" id="query" name="q"><br><br>
+  <input type="submit" value="Найти">
+ </form> 
+ {% if notes %}
+  <h2>Результаты поиска:</h2>
+  <ul>
+   {% for note in notes %}
+    <li><a href="/notes/{{note.id}}">{{note.title}}</a></li>
+   {% endfor %}
+  </ul>
+ {% endif %}
+</body>
+</html>
