@@ -14,8 +14,20 @@ pub async fn create_note(note: web::Json<Note>) -> impl Responder {
 
 pub async fn get_note_by_id(id: web::Path<i32>) -> impl Responder {
     // код для получения заметки из базы данных по id
-    let note = Note::new(id, String::from("Sample Note"), String::from("This is a sample note."));
+    let note = Note::new(
+        *id,
+        String::from("Sample Note"),
+        String::from("This is a sample note."),
+    );
     HttpResponse::Ok().json(note)
+}
+
+pub async fn get_all_notes() -> impl Responder {
+    let response = json!({
+        "status": "success",
+        "message": "You got all notes, buddy"
+    });
+    HttpResponse::Ok().json(response)
 }
 
 pub async fn update_note(id: web::Path<i32>, note: web::Json<Note>) -> impl Responder {
